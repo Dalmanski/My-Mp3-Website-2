@@ -19,7 +19,7 @@ body::before {
     height: calc(100% + 40px);
     background: 
         radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%),
-        url("https://img.freepik.com/free-vector/glowing-musical-pentagram-background-with-sound-notes_1017-31220.jpg?w=1380&t=st=1726100328~exp=1726100928~hmac=e0408f4650be135d4f8f2501af032c457a6a5ad59d18747bfcda43c13a6333b7") no-repeat center center;
+        url("My music pic/glowing-musical-pentagram-background-with-sound-notes_1017-31220.avif") no-repeat center center;
     background-size: cover;
     filter: blur(10px);
     z-index: -1;
