@@ -17,6 +17,7 @@ body::before {
     left: -20px;
     width: calc(100% + 40px);
     height: calc(100% + 40px);
+    background-color: black;
     background: 
         radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%),
         url("My music pic/glowing-musical-pentagram-background-with-sound-notes_1017-31220.jpg") no-repeat center center;
