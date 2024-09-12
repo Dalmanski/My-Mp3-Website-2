@@ -1,25 +1,43 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #2c3e50, #bdc3c7);
+    font-family: 'Chakra Petch', Arial, sans-serif;
+    position: relative; /* Ensure the pseudo-element covers the entire body */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     color: #fff;
-    background-size: cover;
-    background-position: center;
-    transition: background-image 0.3s ease-in-out;
+    overflow: hidden; /* Prevent scrolling issues */
 }
 
+body::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    background: 
+        radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%),
+        url("https://img.freepik.com/free-vector/glowing-musical-pentagram-background-with-sound-notes_1017-31220.jpg?w=1380&t=st=1726100328~exp=1726100928~hmac=e0408f4650be135d4f8f2501af032c457a6a5ad59d18747bfcda43c13a6333b7") no-repeat center center;
+    background-size: cover;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.content {
+    z-index: 1; /* Make sure the content is above the blurred background */
+}
 
 .playlist-container {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     width: 350px;
     text-align: center;
+    box-shadow: 0 0 15px skyblue;
+    outline: 3px solid skyblue;
+    outline-offset: 5px; /* Distance between the outline and the border */
 }
 
 h1 {
@@ -38,6 +56,8 @@ h1 {
     overflow: hidden;
     border-radius: 10px;
     margin-bottom: 20px;
+    box-shadow: 0 0 15px skyblue; 
+    outline: 3px solid skyblue;
 }
 
 .album-art img {
@@ -84,7 +104,7 @@ h1 {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #3498db;
+    background: skyblue;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -93,7 +113,7 @@ h1 {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: #3498db;
+    background: skyblue;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -119,7 +139,7 @@ h1 {
 }
 
 .control-btn:hover {
-    color: #3498db;
+    color: skyblue;
 }
 
 .fade-in {
@@ -127,11 +147,12 @@ h1 {
 }
 
 @keyframes fadeInAnimation {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
+canvas {
+    width: 100%;
+    height: 300px;
+    background-color: black;
+}
