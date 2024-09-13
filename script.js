@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const backwardBtn = document.getElementById('backward');
     const forwardBtn = document.getElementById('forward');
     const trackTitle = document.getElementById('track-title');
+    const bpmId = document.getElementById('bpm-id');
     const seekBar = document.getElementById('seek-bar');
     const currentTimeEl = document.getElementById('current-time');
     const durationEl = document.getElementById('duration');
@@ -18,10 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let pulseInterval;
 
     const tracks = [
-        { src: 'Other music\\Kiyaaaa - あちこち (feat.ROSE) MV.mp3', title: 'Kiyaaaa - あちこち (feat.ROSE) MV', image: 'Other music\\Kiya~.png', bpm: 128 },
+        { src: 'Other music\\Kiyaaaa - あちこち (feat.ROSE) MV.mp3', title: 'Kiyaaaa - あちこち (feat.ROSE)', image: 'Other music\\Kiya~.png', bpm: 128 },
+        { src: 'Other music\\Essencen - SAGES.mp3', title: 'Essencen - SAGES', image: 'Other music\\Sages.png', bpm: 130 },
         { src: 'My Music\\Dalmanski - Kawaii X.mp3', title: 'Dalmanski - Kawaii X', image: 'My music pic\\Kawaii X pic.jpg', bpm: 93 },
         { src: 'My Music\\Dalmanski - When.mp3', title: 'Dalmanski - When', image: 'My music pic\\When pic.jpg', bpm: 77 },
-        { src: 'My Music\\Dalmanski - Destiny.mp3', title: 'Dalmanski - Destiny', image: 'My music pic\\Destiny pic.jpg', bpm: 124 }    
+        { src: 'My Music\\Dalmanski - Destiny.mp3', title: 'Dalmanski - Destiny', image: 'My music pic\\Destiny pic.jpg', bpm: 124 }
     ];
 
     function setPulseSize() {
@@ -33,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadTrack(index) {
         currentTrackIndex = index; // Update current track index
         audio.src = tracks[index].src;
-        trackTitle.textContent = tracks[index].title + " (BPM: " + tracks[index].bpm + ")";
+        trackTitle.textContent = tracks[index].title;
+        bpmId.textContent = "BPM: " + tracks[index].bpm;
         albumImg.src = tracks[index].image;
         bgImg.src = tracks[index].image;
         seekBar.value = 0;
@@ -118,11 +121,13 @@ document.addEventListener('DOMContentLoaded', () => {
     forwardBtn.addEventListener('click', forward);
 
     audio.addEventListener('timeupdate', () => {
-        seekBar.value = (audio.currentTime / audio.duration) * 100;
-        currentTimeEl.textContent = formatTime(audio.currentTime);
-        durationEl.textContent = formatTime(audio.duration);
+        const value = (audio.currentTime / audio.duration) * 100; // Calculate percentage of the song played
+        seekBar.value = value; // Update the slider thumb position
+        seekBar.style.background = `linear-gradient(to right, white ${value}%, black ${value}%)`; // Dynamic background fill
+        currentTimeEl.textContent = formatTime(audio.currentTime); // Update current time display
+        durationEl.textContent = formatTime(audio.duration); // Update duration display
     });
-
+    
     audio.addEventListener('ended', () => {
         stopPulseEffect(); 
         seekBar.value = 0; 
@@ -133,8 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     seekBar.addEventListener('input', () => {
-        audio.currentTime = (seekBar.value / 100) * audio.duration;
-    });
+        const value = seekBar.value; // Get current slider value (0-100)
+        seekBar.style.background = `linear-gradient(to right, white ${value}%, black ${value}%)`; 
+        audio.currentTime = (value / 100) * audio.duration; // Update audio time
+    });    
+
 
     function formatTime(seconds) {
         const minutes = Math.floor(seconds / 60);

@@ -57,7 +57,7 @@ body {
 
 .playlist {
     width: 200px;
-    background: rgba(0, 0, 0, 0.695);
+    background: rgba(0, 0, 0, 0.375);
     border-radius: 0px 20px 20px 0px;
     box-shadow: 0 0 10px skyblue;
     overflow-y: auto;
@@ -87,7 +87,7 @@ body {
 
 /* Alternate background colors */
 .playlist li:nth-child(odd) {
-    background-color: rgba(135, 207, 235, 0.136);
+    background-color: rgba(135, 207, 235, 0.052);
 }
 
 .playlist li:nth-child(even) {
@@ -148,9 +148,11 @@ body {
     -webkit-appearance: none;
     appearance: none;
     height: 5px;
-    background: #fff;
     border-radius: 5px;
     outline: none;
+    background: linear-gradient(to right, white 0%, white 0%, black 0%, black 100%);
+    box-shadow: 0 0 10px black; /* Black shadow around the bar */
+    position: relative;
     transition: background 0.3s;
 }
 
@@ -160,18 +162,20 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: skyblue;
+    background: white;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px black; /* Black shadow for the thumb */
 }
 
 #seek-bar::-moz-range-thumb {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background: skyblue;
+    background: white;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 10px black; /* Black shadow for the thumb */
 }
 
 .controls {
@@ -228,43 +232,6 @@ body {
     0% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
     10% { transform: scale(1.02); box-shadow: 0 0 50px skyblue; }
     100% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
-}
-
-
-/* Webkit browsers (Chrome, Safari, Edge) */
-::-webkit-scrollbar {
-    width: 12px; 
-}
-::-webkit-scrollbar-track {
-    background: #333; 
-}
-::-webkit-scrollbar-thumb {
-    background-color: #555; /* Thumb color */
-    border-radius: 10px; /* Roundness of the thumb */
-    border: 3px solid #333; /* Space around the thumb */
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #777; 
-}
-/* For the left navigation specifically */
-nav {
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: #555 #333;
-}
-/* Custom scrollbar for webkit browsers in nav */
-nav::-webkit-scrollbar {
-    width: 12px;
-}
-nav::-webkit-scrollbar-track {
-    background: #333;
-}
-nav::-webkit-scrollbar-thumb {
-    background-color: #555;
-    border-radius: 10px;
-    border: 3px solid #333;
-}
-nav::-webkit-scrollbar-thumb:hover {
-    background: #777;
 }
 
 

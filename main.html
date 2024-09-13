@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>MP3 Playlist</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="black_scrollbar.css">
     <script src="script.js" defer></script>    
 </head>
 <body>
@@ -21,7 +22,8 @@
                     <img id="album-img" src="https://via.placeholder.com/150" alt="Album Art">
                 </div>
                 <div class="track-info">
-                    <p id="track-title">Track Title</p>
+                    <p id="track-title"></p>
+                    <p id="bpm-id"></p>
                     <div class="progress-container">
                         <span id="current-time">0:00</span>
                         <input type="range" id="seek-bar" value="0">
@@ -39,7 +41,7 @@
         </div>
 
         <div class="playlist">
-            <h2>Playlist</h2>
+            <h2> Playlist: </h2>
             <ul id="playlist">
                 <!-- Playlist items will be added here dynamically -->
             </ul>
