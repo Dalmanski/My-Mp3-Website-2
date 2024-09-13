@@ -186,3 +186,50 @@ body::before {
 .control-btn:hover {
     color: skyblue;
 }
+
+.pulse-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    pointer-events: none; /* Make sure this doesn't block interactions */
+}
+
+/* Pulse effect */
+#pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(0, 150, 255, 0.5); /* Adjust color to match your theme */
+    opacity: 0;
+    border-radius: 50px;
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1); /* Start size of the pulse */
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.25); /* End size of the pulse to match container */
+        opacity: 0;
+    }
+}
+
+@keyframes container-pulse {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.pulse-animation {
+    animation: pulse-animation 2s infinite; /* Adjust duration as needed */
+}
+
+

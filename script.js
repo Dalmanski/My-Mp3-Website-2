@@ -7,22 +7,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTimeEl = document.getElementById('current-time');
     const durationEl = document.getElementById('duration');
     const albumImg = document.getElementById('album-img');
-    const playlistItems = document.querySelectorAll('#playlist li'); // Select all playlist items
+    const pulse = document.getElementById('pulse');
+    const playlistContainer = document.getElementById('playlist');
+    const container = document.querySelector('.container');
     
     let currentTrackIndex = 0;
     let isPlaying = false;
     let audio = new Audio();
-    
+    let pulseInterval;
+
     const tracks = [
-        { src: 'My Music\\Dalmanski - Kawaii X.mp3', title: 'Dalmanski - Kawaii X', image: 'My music pic\\Kawaii X pic.jpg' },
-        { src: 'My Music\\Dalmanski - When.mp3', title: 'Dalmanski - When', image: 'My music pic\\When pic.jpg' },
-        { src: 'My Music\\Dalmanski - Destiny.mp3', title: 'Dalmanski - Destiny', image: 'My music pic\\Destiny pic.jpg' }
+        { src: 'Other music\\Kiyaaaa - あちこち (feat.ROSE) MV.mp3', title: 'Kiyaaaa - あちこち (feat.ROSE) MV', image: 'Other music\\Kiya~.png', bpm: 128 },
+        { src: 'My Music\\Dalmanski - Kawaii X.mp3', title: 'Dalmanski - Kawaii X', image: 'My music pic\\Kawaii X pic.jpg', bpm: 93 },
+        { src: 'My Music\\Dalmanski - When.mp3', title: 'Dalmanski - When', image: 'My music pic\\When pic.jpg', bpm: 77 },
+        { src: 'My Music\\Dalmanski - Destiny.mp3', title: 'Dalmanski - Destiny', image: 'My music pic\\Destiny pic.jpg', bpm: 124 }    
     ];
+
+    function setPulseSize() {
+        const containerRect = container.getBoundingClientRect();
+        pulse.style.width = `${containerRect.width}px`;
+        pulse.style.height = `${containerRect.height}px`;
+    }
 
     function loadTrack(index) {
         currentTrackIndex = index; // Update current track index
         audio.src = tracks[index].src;
-        trackTitle.textContent = tracks[index].title;
+        trackTitle.textContent = tracks[index].title + " (BPM: " + tracks[index].bpm + ")";
         albumImg.src = tracks[index].image;
         seekBar.value = 0;
         currentTimeEl.textContent = '0:00';
@@ -35,18 +45,24 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             albumImg.classList.remove('fade-in');
         }, 300); // Adjust the delay to match your CSS animation duration
+
+        // Ensure the pulse effect is stopped when a new track is loaded
+        stopPulseEffect();
+        setPulseSize();
     }
 
     function playTrack() {
         audio.play();
         isPlaying = true;
         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        startPulseEffect();
     }
 
     function pauseTrack() {
         audio.pause();
         isPlaying = false;
         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        stopPulseEffect();
     }
 
     function playPause() {
@@ -61,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentTrackIndex > 0) {
             currentTrackIndex--;
             loadTrack(currentTrackIndex);
-            playTrack();
+            playTrack(); 
         }
     }
 
@@ -69,17 +85,41 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentTrackIndex < tracks.length - 1) {
             currentTrackIndex++;
             loadTrack(currentTrackIndex);
-            playTrack();
+            playTrack(); 
         }
     }
 
-    // Add event listeners to the playlist items
-    playlistItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            loadTrack(index);
-            playTrack(); // Automatically play the track when clicked
+    function calculatePulseInterval(bpm) {
+        return 60000 / bpm; // Interval in milliseconds
+    }
+
+    function startPulseEffect() {
+        const bpm = tracks[currentTrackIndex].bpm;
+        const pulseIntervalTime = calculatePulseInterval(bpm);
+        pulse.style.animation = `pulse-animation ${pulseIntervalTime}ms infinite`;
+        container.style.animation = `container-pulse ${pulseIntervalTime}ms infinite`;
+    }
+
+    function stopPulseEffect() {
+        pulse.style.animation = 'none'; 
+        container.style.animation = 'none';
+    }
+
+    function updatePlaylist() {
+        playlistContainer.innerHTML = ''; // Clear existing playlist items
+        tracks.forEach((track, index) => {
+            const li = document.createElement('li');
+            li.textContent = track.title;
+            li.addEventListener('click', () => {
+                loadTrack(index);
+                playTrack();
+            });
+            playlistContainer.appendChild(li);
         });
-    });
+    }
+
+    // Initial playlist setup
+    updatePlaylist();
 
     playPauseBtn.addEventListener('click', playPause);
     backwardBtn.addEventListener('click', backward);
@@ -101,6 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
-    // Load the first track initially
+    // Load the first track initially without starting the pulse effect
     loadTrack(currentTrackIndex);
 });
