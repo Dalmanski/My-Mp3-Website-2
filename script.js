@@ -142,6 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
+    // Resize event listener to update pulse size
+    window.addEventListener('resize', setPulseSize);
+
     // Load the first track initially without starting the pulse effect
     loadTrack(currentTrackIndex);
 });

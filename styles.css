@@ -218,6 +218,7 @@ body {
     border-radius: 50px;
 }
 
+
 @keyframes pulse-animation {
     0% { transform: scale(1); opacity: 0.5; }/* Start size of the pulse */
     100% { transform: scale(1.25); opacity: 0; } /* End size of the pulse to match container */
@@ -227,4 +228,95 @@ body {
     0% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
     10% { transform: scale(1.02); box-shadow: 0 0 50px skyblue; }
     100% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
+}
+
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 12px; 
+}
+::-webkit-scrollbar-track {
+    background: #333; 
+}
+::-webkit-scrollbar-thumb {
+    background-color: #555; /* Thumb color */
+    border-radius: 10px; /* Roundness of the thumb */
+    border: 3px solid #333; /* Space around the thumb */
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #777; 
+}
+/* For the left navigation specifically */
+nav {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: #555 #333;
+}
+/* Custom scrollbar for webkit browsers in nav */
+nav::-webkit-scrollbar {
+    width: 12px;
+}
+nav::-webkit-scrollbar-track {
+    background: #333;
+}
+nav::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 10px;
+    border: 3px solid #333;
+}
+nav::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        justify-content: center; /* Center container vertically */
+        line-height: calc(1em + 1vh); /* Adjust line-height dynamically */
+        outline: 3px solid skyblue;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        
+    }
+
+    .playlist-container, .playlist {
+        width: 100%;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+
+    .album-art {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        height: auto;
+        justify-content: center;
+        line-height: calc(1em + 1vh); /* Adjust line-height dynamically */
+    }
+
+    .playlist-container, .playlist {
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .album-art {
+        width: 100px;
+        height: 100px;
+    }
+
+    .track-info {
+        font-size: 0.8em;
+    }
+
+    .control-btn {
+        margin: 5px 0;
+    }
 }
