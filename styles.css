@@ -1,4 +1,5 @@
 body {
+    background-color: black;
     font-family: 'Chakra Petch', Arial, sans-serif;
     position: relative;
     display: flex;
@@ -10,28 +11,34 @@ body {
     overflow: hidden;
 }
 
-body::before {
-    content: "";
+.background {
     position: absolute;
     top: -20px;
     left: -20px;
     width: calc(100% + 40px);
     height: calc(100% + 40px);
-    background-color: black;
-    background: 
-        radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 100%),
-        url("My music pic/glowing-musical-pentagram-background-with-sound-notes_1017-31220.jpg") no-repeat center center;
-    background-size: cover;
-    filter: blur(10px);
+    transform: scale(1.1);
+    overflow: hidden; /* Hide overflow due to scaling */
     z-index: -1;
+}
+
+#bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the image covers the container */
+    filter: brightness(0.1) blur(15px); 
 }
 
 .container {
     display: flex;
     justify-content: center;
+    border-radius: 10px 20px 20px 10px;
     align-items: stretch; /* Ensure both sides are the same height */
     z-index: 1;
-    height: 65vh; /* Fixed height for the entire player */
+    height: 65vh; 
 }
 
 .playlist-container {
@@ -212,24 +219,12 @@ body::before {
 }
 
 @keyframes pulse-animation {
-    0% {
-        transform: scale(1); /* Start size of the pulse */
-        opacity: 0.5;
-    }
-    100% {
-        transform: scale(1.25); /* End size of the pulse to match container */
-        opacity: 0;
-    }
+    0% { transform: scale(1); opacity: 0.5; }/* Start size of the pulse */
+    100% { transform: scale(1.25); opacity: 0; } /* End size of the pulse to match container */
 }
 
 @keyframes container-pulse {
-    0% { transform: scale(1); }
-    10% { transform: scale(1.02); }
-    100% { transform: scale(1); }
+    0% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
+    10% { transform: scale(1.02); box-shadow: 0 0 50px skyblue; }
+    100% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
 }
-
-.pulse-animation {
-    animation: pulse-animation 2s infinite; /* Adjust duration as needed */
-}
-
-

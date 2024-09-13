@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTimeEl = document.getElementById('current-time');
     const durationEl = document.getElementById('duration');
     const albumImg = document.getElementById('album-img');
+    const bgImg = document.getElementById('bg-img');
     const pulse = document.getElementById('pulse');
     const playlistContainer = document.getElementById('playlist');
     const container = document.querySelector('.container');
@@ -34,19 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.src = tracks[index].src;
         trackTitle.textContent = tracks[index].title + " (BPM: " + tracks[index].bpm + ")";
         albumImg.src = tracks[index].image;
+        bgImg.src = tracks[index].image;
         seekBar.value = 0;
         currentTimeEl.textContent = '0:00';
         durationEl.textContent = '0:00';
-        
-        // Add animation class to trigger fade-in
-        albumImg.classList.add('fade-in');
-        
-        // Remove animation class after animation completes
-        setTimeout(() => {
-            albumImg.classList.remove('fade-in');
-        }, 300); // Adjust the delay to match your CSS animation duration
-
-        // Ensure the pulse effect is stopped when a new track is loaded
         stopPulseEffect();
         setPulseSize();
     }
@@ -129,6 +121,15 @@ document.addEventListener('DOMContentLoaded', () => {
         seekBar.value = (audio.currentTime / audio.duration) * 100;
         currentTimeEl.textContent = formatTime(audio.currentTime);
         durationEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('ended', () => {
+        stopPulseEffect(); 
+        seekBar.value = 0; 
+        currentTimeEl.textContent = '0:00'; 
+        durationEl.textContent = '0:00'; 
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'; // Change button to play
+        isPlaying = false; 
     });
 
     seekBar.addEventListener('input', () => {
