@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTimeEl = document.getElementById('current-time');
     const durationEl = document.getElementById('duration');
     const albumImg = document.getElementById('album-img');
+    const playlistItems = document.querySelectorAll('#playlist li'); // Select all playlist items
     
     let currentTrackIndex = 0;
     let isPlaying = false;
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     function loadTrack(index) {
+        currentTrackIndex = index; // Update current track index
         audio.src = tracks[index].src;
         trackTitle.textContent = tracks[index].title;
         albumImg.src = tracks[index].image;
@@ -71,6 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Add event listeners to the playlist items
+    playlistItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            loadTrack(index);
+            playTrack(); // Automatically play the track when clicked
+        });
+    });
+
     playPauseBtn.addEventListener('click', playPause);
     backwardBtn.addEventListener('click', backward);
     forwardBtn.addEventListener('click', forward);
@@ -94,5 +104,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load the first track initially
     loadTrack(currentTrackIndex);
 });
-
-

@@ -1,13 +1,13 @@
 body {
     font-family: 'Chakra Petch', Arial, sans-serif;
-    position: relative; /* Ensure the pseudo-element covers the entire body */
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     color: #fff;
-    overflow: hidden; /* Prevent scrolling issues */
+    overflow: hidden;
 }
 
 body::before {
@@ -26,8 +26,11 @@ body::before {
     z-index: -1;
 }
 
-.content {
-    z-index: 1; /* Make sure the content is above the blurred background */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1;
 }
 
 .playlist-container {
@@ -38,11 +41,37 @@ body::before {
     text-align: center;
     box-shadow: 0 0 15px skyblue;
     outline: 3px solid skyblue;
-    outline-offset: 5px; /* Distance between the outline and the border */
+    outline-offset: 5px;
 }
 
-h1 {
-    margin-bottom: 20px;
+.playlist {
+    margin-left: 30px; /* Space between player and playlist */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px skyblue;
+    outline: 3px solid skyblue;
+    outline-offset: 5px;
+    width: 200px;
+}
+
+.playlist h2 {
+    margin-bottom: 15px;
+}
+
+.playlist ul {
+    list-style: none;
+    padding: 0;
+}
+
+.playlist ul li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.playlist ul li:hover {
+    color: skyblue;
 }
 
 .player {
@@ -57,7 +86,7 @@ h1 {
     overflow: hidden;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 0 15px skyblue; 
+    box-shadow: 0 0 15px skyblue;
     outline: 3px solid skyblue;
 }
 
@@ -135,25 +164,6 @@ h1 {
     transition: color 0.3s;
 }
 
-.control-btn:focus {
-    outline: none;
-}
-
 .control-btn:hover {
     color: skyblue;
-}
-
-.fade-in {
-    animation: fadeInAnimation 0.3s ease-in-out forwards;
-}
-
-@keyframes fadeInAnimation {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-canvas {
-    width: 100%;
-    height: 300px;
-    background-color: black;
 }

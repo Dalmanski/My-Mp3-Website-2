@@ -11,30 +11,43 @@
 </head>
 <body>
     <div class="bg-img"></div>
-    <div class="playlist-container">
-        <h1>My Playlist</h1>
-        <div class="player">
-            <div class="album-art">
-                <img id="album-img" src="https://via.placeholder.com/150" alt="Album Art">
-            </div>
-            <div class="track-info">
-                <p id="track-title">Track Title</p>
-                <div class="progress-container">
-                    <span id="current-time">0:00</span>
-                    <input type="range" id="seek-bar" value="0">
-                    <span id="duration">0:00</span>
+    <div class="container">
+        <div class="playlist-container">
+            <h1>Now Playing</h1>
+            <div class="player">
+                <div class="album-art">
+                    <img id="album-img" src="https://via.placeholder.com/150" alt="Album Art">
                 </div>
+                <div class="track-info">
+                    <p id="track-title">Track Title</p>
+                    <div class="progress-container">
+                        <span id="current-time">0:00</span>
+                        <input type="range" id="seek-bar" value="0">
+                        <span id="duration">0:00</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="shuffle" class="control-btn"><i class="fas fa-shuffle"></i></button>
+                    <button id="backward" class="control-btn"><i class="fas fa-backward"></i></button>
+                    <button id="play-pause" class="control-btn"><i class="fas fa-play"></i></button>
+                    <button id="forward" class="control-btn"><i class="fas fa-forward"></i></button>
+                    <button id="loop" class="control-btn"><i class="fas fa-repeat"></i></button>
+                </div>               
             </div>
-            <div class="controls">
-                <button id="shuffle" class="control-btn"><i class="fas fa-shuffle"></i></button>
-                <button id="backward" class="control-btn"><i class="fas fa-backward"></i></button>
-                <button id="play-pause" class="control-btn"><i class="fas fa-play"></i></button>
-                <button id="forward" class="control-btn"><i class="fas fa-forward"></i></button>
-                <button id="loop" class="control-btn"><i class="fas fa-repeat"></i></button>
-            </div>               
         </div>
+
+        <div class="playlist">
+            <h2>Playlist</h2>
+            <ul id="playlist">
+                <li>Dalmanski - Kawaii X</li>
+                <li>Dalmanski - When</li>
+                <li>Dalmanski - Destiny</li>
+            </ul>
+        </div>
+        
     </div>
 </body>
+
 </html>
 
 
