@@ -18,7 +18,7 @@ body {
     width: calc(100% + 40px);
     height: calc(100% + 40px);
     transform: scale(1.1);
-    overflow: hidden; /* Hide overflow due to scaling */
+    overflow: hidden;
     z-index: -1;
 }
 
@@ -28,7 +28,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensure the image covers the container */
+    object-fit: cover;
     filter: brightness(0.1) blur(15px); 
 }
 
@@ -36,11 +36,12 @@ body {
     display: flex;
     justify-content: center;
     border-radius: 10px 20px 20px 10px;
-    align-items: stretch; /* Ensure both sides are the same height */
+    align-items: stretch;
     z-index: 1;
-    height: 65vh; 
+    height: 70vh; 
 }
 
+/* left side */
 .playlist-container {
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -55,6 +56,7 @@ body {
     z-index: 1;
 }
 
+/* right side */
 .playlist {
     width: 200px;
     background: rgba(0, 0, 0, 0.375);
@@ -76,7 +78,7 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    flex-grow: 1; /* Allow the list to grow and take available space */
+    flex-grow: 1;
 }
 
 .playlist li {
@@ -85,7 +87,6 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
-/* Alternate background colors */
 .playlist li:nth-child(odd) {
     background-color: rgba(135, 207, 235, 0.052);
 }
@@ -94,7 +95,6 @@ body {
     background-color: #4683b423;
 }
 
-/* Highlight on hover */
 .playlist li:hover {
     background-color: #1e90ff;
     color: #fff; 
@@ -151,7 +151,7 @@ body {
     border-radius: 5px;
     outline: none;
     background: linear-gradient(to right, white 0%, white 0%, black 0%, black 100%);
-    box-shadow: 0 0 10px black; /* Black shadow around the bar */
+    box-shadow: 0 0 10px black;
     position: relative;
     transition: background 0.3s;
 }
@@ -165,7 +165,7 @@ body {
     background: white;
     cursor: pointer;
     transition: background 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 10px black; /* Black shadow for the thumb */
+    box-shadow: 0 0 10px black;
 }
 
 #seek-bar::-moz-range-thumb {
@@ -175,7 +175,7 @@ body {
     background: white;
     cursor: pointer;
     transition: background 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 10px black; /* Black shadow for the thumb */
+    box-shadow: 0 0 10px black;
 }
 
 .controls {
@@ -198,6 +198,10 @@ body {
     color: skyblue;
 }
 
+.control-btn.active {
+    color: skyblue;
+}
+
 .pulse-container {
     position: absolute;
     top: 0;
@@ -205,10 +209,10 @@ body {
     width: 100%;
     height: 100%;
     z-index: -5;
-    pointer-events: none; /* Make sure this doesn't block interactions */
+    pointer-events: none;
 }
 
-/* Pulse effect */
+
 #pulse {
     position: absolute;
     top: 0;
@@ -217,15 +221,15 @@ body {
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    background: rgba(0, 150, 255, 0.5); /* Adjust color to match your theme */
+    background: rgba(0, 150, 255, 0.5);
     opacity: 0;
     border-radius: 50px;
 }
 
 
 @keyframes pulse-animation {
-    0% { transform: scale(1); opacity: 0.5; }/* Start size of the pulse */
-    100% { transform: scale(1.25); opacity: 0; } /* End size of the pulse to match container */
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.25); opacity: 0; }
 }
 
 @keyframes container-pulse {
@@ -235,23 +239,21 @@ body {
 }
 
 
-/* Responsive adjustments */
 @media screen and (max-width: 1200px) {
     .container {
         flex-direction: column;
         height: auto;
-        justify-content: center; /* Center container vertically */
-        line-height: calc(1em + 1vh); /* Adjust line-height dynamically */
+        justify-content: center;
+        line-height: calc(1em + 1vh);
         outline: 3px solid skyblue;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
         justify-content: center; 
-        
     }
 
     .playlist-container, .playlist {
-        width: 100%;
+        width: 90%;
         border-radius: 0px;
         box-shadow: none;
     }
@@ -266,11 +268,11 @@ body {
     .container {
         height: auto;
         justify-content: center;
-        line-height: calc(1em + 1vh); /* Adjust line-height dynamically */
+        line-height: calc(1em + 1vh);
     }
 
     .playlist-container, .playlist {
-        width: 100%;
+        width: 90%;
         box-shadow: none;
     }
 

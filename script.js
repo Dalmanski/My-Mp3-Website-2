@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const playPauseBtn = document.getElementById('play-pause');
     const backwardBtn = document.getElementById('backward');
     const forwardBtn = document.getElementById('forward');
+    const shuffleBtn = document.getElementById('shuffle');
+    const loopBtn = document.getElementById('loop');
     const trackTitle = document.getElementById('track-title');
     const bpmId = document.getElementById('bpm-id');
     const seekBar = document.getElementById('seek-bar');
@@ -16,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTrackIndex = 0;
     let isPlaying = false;
     let audio = new Audio();
-    let pulseInterval;
+    let isShuffle = false;
+    let isLoop = false;
 
     const tracks = [
         { src: 'Other music\\Kiyaaaa - あちこち (feat.ROSE) MV.mp3', title: 'Kiyaaaa - あちこち (feat.ROSE)', image: 'Other music\\Kiya~.png', bpm: 128 },
@@ -26,20 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'My Music\\Dalmanski - Destiny.mp3', title: 'Dalmanski - Destiny', image: 'My music pic\\Destiny pic.jpg', bpm: 124 }
     ];
 
-    function setPulseSize() {
-        const containerRect = container.getBoundingClientRect();
-        pulse.style.width = `${containerRect.width}px`;
-        pulse.style.height = `${containerRect.height}px`;
-    }
-
     function loadTrack(index) {
-        currentTrackIndex = index; // Update current track index
+        currentTrackIndex = index;
         audio.src = tracks[index].src;
         trackTitle.textContent = tracks[index].title;
         bpmId.textContent = "BPM: " + tracks[index].bpm;
         albumImg.src = tracks[index].image;
         bgImg.src = tracks[index].image;
-        seekBar.value = 0;
+        seekBar.value = 0; // Set seek bar to 0 initially
         currentTimeEl.textContent = '0:00';
         durationEl.textContent = '0:00';
         stopPulseEffect();
@@ -69,23 +66,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function backward() {
-        if (currentTrackIndex > 0) {
-            currentTrackIndex--;
+        if (isShuffle) {
+            playShuffle();
+        } else {
+            if (currentTrackIndex > 0) {
+                currentTrackIndex--;
+            } else {
+                currentTrackIndex = tracks.length - 1;
+            }
             loadTrack(currentTrackIndex);
             playTrack(); 
         }
     }
 
     function forward() {
-        if (currentTrackIndex < tracks.length - 1) {
-            currentTrackIndex++;
+        if (isShuffle) {
+            playShuffle();
+        } else {
+            if (currentTrackIndex < tracks.length - 1) {
+                currentTrackIndex++;
+            } else {
+                currentTrackIndex = 0;
+            }
             loadTrack(currentTrackIndex);
             playTrack(); 
         }
     }
 
     function calculatePulseInterval(bpm) {
-        return 60000 / bpm; // Interval in milliseconds
+        return 60000 / bpm;
+    }
+
+    function setPulseSize() {
+        const containerRect = container.getBoundingClientRect();
+        pulse.style.width = `${containerRect.width}px`;
+        pulse.style.height = `${containerRect.height}px`;
     }
 
     function startPulseEffect() {
@@ -101,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updatePlaylist() {
-        playlistContainer.innerHTML = ''; // Clear existing playlist items
+        playlistContainer.innerHTML = '';
         tracks.forEach((track, index) => {
             const li = document.createElement('li');
             li.textContent = track.title;
@@ -113,46 +128,84 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial playlist setup
+    function playShuffle() {
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * tracks.length);
+        } while (randomIndex === currentTrackIndex);
+        loadTrack(randomIndex);
+        playTrack();
+    }
+
+    shuffleBtn.addEventListener('click', () => {
+        isShuffle = !isShuffle;
+        shuffleBtn.classList.toggle('active', isShuffle);
+    });
+
+    loopBtn.addEventListener('click', () => {
+        isLoop = !isLoop;
+        loopBtn.classList.toggle('active', isLoop);
+    });
+
     updatePlaylist();
 
     playPauseBtn.addEventListener('click', playPause);
     backwardBtn.addEventListener('click', backward);
     forwardBtn.addEventListener('click', forward);
 
-    audio.addEventListener('timeupdate', () => {
-        const value = (audio.currentTime / audio.duration) * 100; // Calculate percentage of the song played
-        seekBar.value = value; // Update the slider thumb position
-        seekBar.style.background = `linear-gradient(to right, white ${value}%, black ${value}%)`; // Dynamic background fill
-        currentTimeEl.textContent = formatTime(audio.currentTime); // Update current time display
-        durationEl.textContent = formatTime(audio.duration); // Update duration display
-    });
-    
+    function updateSeekBar() {
+        if (audio.duration && !isNaN(audio.duration)) {
+            const value = (audio.currentTime / audio.duration) * 100;
+            seekBar.value = value;
+            seekBar.style.background = `linear-gradient(to right, white ${value}%, black ${value}%)`;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+            durationEl.textContent = formatTime(audio.duration);
+        } else {
+            // Reset to default values if duration is invalid
+            seekBar.value = 0;
+            seekBar.style.background = 'linear-gradient(to right, white 0%, black 0%)';
+            currentTimeEl.textContent = '0:00';
+            durationEl.textContent = '0:00';
+        }
+    }
+
+    audio.addEventListener('timeupdate', updateSeekBar);
+    audio.addEventListener('loadeddata', updateSeekBar); 
+    audio.addEventListener('loadedmetadata', updateSeekBar); 
+
     audio.addEventListener('ended', () => {
         stopPulseEffect(); 
         seekBar.value = 0; 
         currentTimeEl.textContent = '0:00'; 
         durationEl.textContent = '0:00'; 
-        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>'; // Change button to play
-        isPlaying = false; 
+        if (isShuffle) {
+            playShuffle();
+        } else if (isLoop) {
+            loadTrack(currentTrackIndex);
+            playTrack();
+        } else {
+            forward();
+        }
     });
 
     seekBar.addEventListener('input', () => {
-        const value = seekBar.value; // Get current slider value (0-100)
-        seekBar.style.background = `linear-gradient(to right, white ${value}%, black ${value}%)`; 
-        audio.currentTime = (value / 100) * audio.duration; // Update audio time
-    });    
-
+        if (audio.duration && !isNaN(audio.duration)) {
+            const value = seekBar.value;
+            seekBar.style.background = `linear-gradient(to right, white ${value}%, black ${value}%)`;
+            audio.currentTime = (value / 100) * audio.duration;
+        }
+    });
 
     function formatTime(seconds) {
+        if (isNaN(seconds) || seconds === Infinity) {
+            return '0:00';
+        }
         const minutes = Math.floor(seconds / 60);
         const secs = Math.floor(seconds % 60);
         return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
-    // Resize event listener to update pulse size
     window.addEventListener('resize', setPulseSize);
 
-    // Load the first track initially without starting the pulse effect
     loadTrack(currentTrackIndex);
 });
