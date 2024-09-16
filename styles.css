@@ -11,17 +11,6 @@ body {
     overflow: hidden;
 }
 
-.background {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    width: calc(100% + 40px);
-    height: calc(100% + 40px);
-    transform: scale(1.1);
-    overflow: hidden;
-    z-index: -1;
-}
-
 #bg-img {
     position: absolute;
     top: 0;
@@ -30,6 +19,20 @@ body {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.1) blur(15px); 
+    animation: 
+        moveBg 3s infinite ease-in-out, 
+        fade-in 1s linear;
+}
+
+@keyframes moveBg {
+    0% { transform: rotate(-1deg) scale(1)}
+    50% { transform: rotate(1deg) scale(1.05)}
+    100% { transform: rotate(-1deg) scale(1)}
+}
+
+@keyframes fade-in {
+    0% { opacity: 0%; }
+    100% { opacity: 100%; }
 }
 
 .container {
@@ -97,7 +100,7 @@ body {
 }
 
 .playlist li:hover {
-    background-color: #1e90ff;
+    background-color: #1e8fff75;
     color: #fff; 
 }
 
@@ -152,7 +155,7 @@ body {
     border-radius: 5px;
     outline: none;
     background: linear-gradient(to right, white 0%, white 0%, black 0%, black 100%);
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px black, 0 0 4px white;
     position: relative;
     transition: background 0.3s;
 }
@@ -229,13 +232,13 @@ body {
 
 
 @keyframes pulse-animation {
-    0% { transform: scale(1); opacity: 0.8; }
+    0% { transform: scale(1); opacity: 0.6; }
     100% { transform: scale(1.25); opacity: 0; }
 }
 
 @keyframes container-pulse {
     0% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
-    10% { transform: scale(1.02); box-shadow: 0 0 50px skyblue; }
+    10% { transform: scale(1.01); box-shadow: 0 0 50px skyblue; }
     100% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
 }
 
