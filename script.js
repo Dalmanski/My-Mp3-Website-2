@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         albumImg.src = tracks[index].image;
         albumImg.style.animation = 'none'; albumImg.offsetHeight; albumImg.style.animation = 'fade-in 1s linear';
         bgImg.src = tracks[index].image;
-        bgImg.style.animation = 'none'; bgImg.offsetHeight; bgImg.style.animation = 'moveBg 3s infinite ease-in-out, fade-in 1s linear';
         seekBar.value = 0;
         currentTimeEl.textContent = '0:00';
         durationEl.textContent = '0:00';
@@ -111,11 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const pulseIntervalTime = calculatePulseInterval(bpm);
         pulse.style.animation = `pulse-animation ${pulseIntervalTime}ms infinite`;
         container.style.animation = `container-pulse ${pulseIntervalTime}ms infinite`;
+        bgImg.style.animation = 'none'; bgImg.offsetHeight; bgImg.style.animation = `moveBg 3s infinite ease-in-out, fade-in 1s linear, bg-pulse ${pulseIntervalTime}ms infinite`;
     }
 
     function stopPulseEffect() {
         pulse.style.animation = 'none'; 
         container.style.animation = 'none';
+        bgImg.style.animation = 'none';
     }
 
     function updatePlaylist() {

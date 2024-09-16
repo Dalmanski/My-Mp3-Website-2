@@ -46,7 +46,7 @@ body {
 
 /* left side */
 .playlist-container {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 111, 123, 0.1);
     padding: 20px;
     border-radius: 10px 0px 0px 10px;
     width: 350px;
@@ -230,7 +230,6 @@ body {
     border-radius: 50px;
 }
 
-
 @keyframes pulse-animation {
     0% { transform: scale(1); opacity: 0.6; }
     100% { transform: scale(1.25); opacity: 0; }
@@ -242,6 +241,10 @@ body {
     100% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
 }
 
+@keyframes bg-pulse{
+    0% { filter: brightness(0.2) blur(15px); }
+    100% { filter: brightness(0.1) blur(15px); }
+}
 
 @media screen and (max-width: 1200px) {
     .container {
