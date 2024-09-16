@@ -49,6 +49,7 @@ body {
     width: 350px;
     text-align: center;
     box-shadow: 0 0 15px skyblue;
+    text-shadow: 2px 2px 5px black;
     outline: 3px solid skyblue;
     display: flex;
     flex-direction: column;
@@ -112,8 +113,8 @@ body {
     overflow: hidden;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 0 15px skyblue;
-    outline: 3px solid skyblue;
+    box-shadow: 0 0 20px black;
+    outline: 3px solid white;
 }
 
 .album-art img {
@@ -189,6 +190,7 @@ body {
     border: none;
     font-size: 24px;
     color: #fff;
+    text-shadow: 2px 2px 5px black;
     cursor: pointer;
     margin: 0 10px;
     transition: color 0.3s;
@@ -211,7 +213,6 @@ body {
     z-index: -5;
     pointer-events: none;
 }
-
 
 #pulse {
     position: absolute;

@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tracks = [
         { src: 'Other music\\Kiyaaaa - あちこち (feat.ROSE) MV.mp3', title: 'Kiyaaaa - あちこち (feat.ROSE)', image: 'Other music\\Kiya~.png', bpm: 128 },
         { src: 'Other music\\Essencen - SAGES.mp3', title: 'Essencen - SAGES', image: 'Other music\\Sages.png', bpm: 130 },
+        { src: 'Other music\\刀醬 - 5_20AM.mp3', title: '刀醬 - 5_20AM', image: 'Other music\\5_20.png', bpm: 125},
         { src: 'My Music\\Dalmanski - Kawaii X.mp3', title: 'Dalmanski - Kawaii X', image: 'My music pic\\Kawaii X pic.jpg', bpm: 93 },
         { src: 'My Music\\Dalmanski - When.mp3', title: 'Dalmanski - When', image: 'My music pic\\When pic.jpg', bpm: 77 },
         { src: 'My Music\\Dalmanski - Destiny.mp3', title: 'Dalmanski - Destiny', image: 'My music pic\\Destiny pic.jpg', bpm: 124 }
@@ -36,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bpmId.textContent = "BPM: " + tracks[index].bpm;
         albumImg.src = tracks[index].image;
         bgImg.src = tracks[index].image;
-        seekBar.value = 0; // Set seek bar to 0 initially
+        seekBar.value = 0;
         currentTimeEl.textContent = '0:00';
         durationEl.textContent = '0:00';
         stopPulseEffect();
