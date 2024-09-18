@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tracks = [
         { src: 'Other music\\Essencen - SAGES.mp3', title: 'Essencen - SAGES', image: 'Other music\\Sages.png', bpm: 130 },
+        { src: 'Other music\\Vindu - Shadow Warrior (lofi beats  chillhop  japan).mp3', title: 'Vindu - Shadow Warrior', image: 'Other music\\Vindu.png', bpm: 45 },
         { src: 'Other music\\Kiyaaaa - あちこち (feat.ROSE) MV.mp3', title: 'Kiyaaaa - あちこち (feat.ROSE)', image: 'Other music\\Kiya~.png', bpm: 128 },
         { src: 'Other music\\刀醬 - 5_20AM.mp3', title: '刀醬 - 5:20AM', image: 'Other music\\5_20.png', bpm: 125},
         { src: 'My Music\\Dalmanski - Kawaii X.mp3', title: 'Dalmanski - Kawaii X', image: 'My music pic\\Kawaii X pic.jpg', bpm: 93 },
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const containerRect = container.getBoundingClientRect();
         pulse.style.width = `${containerRect.width}px`;
         pulse.style.height = `${containerRect.height}px`;
-    }
+    }    
 
     function startPulseEffect() {
         const bpm = tracks[currentTrackIndex].bpm;
@@ -104,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container.style.animation = `container-pulse ${pulseIntervalTime}ms infinite`;
         bgImg.style.animation = 'none'; bgImg.offsetHeight; bgImg.style.animation = `moveBg 3s infinite ease-in-out, fade-in 1s linear, bg-pulse ${pulseIntervalTime}ms infinite`;
     }
-
+    
     function stopPulseEffect() {
         pulse.style.animation = 'none'; 
         container.style.animation = 'none';
@@ -126,8 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function playShuffle() {
         let randomIndex;
-        do {
-            randomIndex = Math.floor(Math.random() * tracks.length);
+        do { randomIndex = Math.floor(Math.random() * tracks.length);
         } while (randomIndex === currentTrackIndex);
         loadTrack(randomIndex);
         playTrack();
@@ -202,6 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('resize', setPulseSize);
-
+    
     loadTrack(currentTrackIndex);
 });

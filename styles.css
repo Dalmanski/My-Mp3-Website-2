@@ -9,6 +9,7 @@ body {
     margin: 0;
     color: #fff;
     overflow: hidden;
+    animation: fade-in 1.5s ease-in-out;
 }
 
 #bg-img {
@@ -21,7 +22,8 @@ body {
     filter: brightness(0.1) blur(15px); 
     animation: 
         moveBg 3s infinite ease-in-out, 
-        fade-in 1s linear;
+        fade-in 1s linear,
+        fade-in 1.5s ease-in-out; 
 }
 
 @keyframes moveBg {
@@ -41,7 +43,7 @@ body {
     border-radius: 10px 20px 20px 10px;
     align-items: stretch;
     z-index: 1;
-    height: 70vh; 
+    height: 65vh; 
 }
 
 /* left side */
