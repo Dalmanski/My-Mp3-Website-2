@@ -252,6 +252,7 @@ body {
     .container {
         flex-direction: column;
         height: auto;
+        width: 400px;
         justify-content: center;
         line-height: calc(1em + 1vh);
         outline: 3px solid skyblue;
@@ -261,10 +262,15 @@ body {
         justify-content: center; 
     }
 
-    .playlist-container, .playlist {
+    .playlist-container {
         width: 90%;
         border-radius: 0px;
         box-shadow: none;
+    }
+
+    .playlist {
+        width: 100%;
+        border-radius: 0px;
     }
 
     .album-art {
@@ -280,9 +286,15 @@ body {
         line-height: calc(1em + 1vh);
     }
 
-    .playlist-container, .playlist {
+    .playlist-container {
         width: 90%;
+        border-radius: 0px;
         box-shadow: none;
+    }
+
+    .playlist {
+        width: 100%;
+        border-radius: 0px;
     }
 
     .album-art {

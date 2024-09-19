@@ -1,24 +1,27 @@
-
 let isLoginVisible = true;
 
-// Toggle between Sign Up and Login forms
+// Toggle between Sign Up and Login forms with animations and dynamic height
 function toggleForm() {
     const loginForm = document.getElementById('login-form');
     const signupForm = document.getElementById('signup-form');
     const formTitle = document.getElementById('form-title');
     const toggleLink = document.getElementById('toggle-link');
+    const container = document.getElementById('login-container-id');
+
     if (isLoginVisible) {
-        // Switch to sign-up form
         loginForm.style.display = 'none';
         signupForm.style.display = 'block';
+        signupForm.style.animation = 'appear 0.5s ease-out';
         formTitle.textContent = 'Sign Up';
         toggleLink.innerHTML = `Already have an account? <a href="#" onclick="toggleForm()">Log In</a>`;
+        container.style.height = '520px';
     } else {
-        // Switch to login form
         signupForm.style.display = 'none';
         loginForm.style.display = 'block';
+        loginForm.style.animation = 'appear 0.5s ease-out';
         formTitle.textContent = 'Log In';
         toggleLink.innerHTML = `Don't have an account? <a href="#" onclick="toggleForm()">Sign Up</a>`;
+        container.style.height = '400px';
     }
     isLoginVisible = !isLoginVisible;
 }
