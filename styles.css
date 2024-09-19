@@ -1,7 +1,6 @@
 body {
     background-color: black;
     font-family: 'Chakra Petch', Arial, sans-serif;
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +18,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.1) blur(15px); 
+    filter: brightness(0.2) blur(15px); 
     animation: 
         moveBg 3s infinite ease-in-out, 
         fade-in 1s linear,
@@ -244,8 +243,8 @@ body {
 }
 
 @keyframes bg-pulse{
-    0% { filter: brightness(0.2) blur(15px); }
-    100% { filter: brightness(0.1) blur(15px); }
+    0% { filter: brightness(0.3) blur(15px); }
+    100% { filter: brightness(0.2) blur(15px); }
 }
 
 @media screen and (max-width: 1200px) {
@@ -282,6 +281,7 @@ body {
 @media screen and (max-width: 768px) {
     .container {
         height: auto;
+        width: 90%;
         justify-content: center;
         line-height: calc(1em + 1vh);
     }
