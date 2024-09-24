@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const pulse = document.getElementById('pulse');
     const playlistContainer = document.getElementById('playlist');
     const container = document.querySelector('.container');
+    const albumContainer = document.querySelector('.album-content');
 
     let currentTrackIndex = 0;
     let isPlaying = false;
@@ -77,8 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             playlistContainer.appendChild(li);
         });
     }
-
-    const albumContainer = document.querySelector('.album-content');
 
     function displayAlbums() {
         albumContainer.innerHTML = '';

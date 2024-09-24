@@ -38,7 +38,6 @@ body {
     display: flex;
     justify-content: center;
     border-radius: 10px 20px 20px 10px;
-    z-index: 1;
     height: 65vh; 
 }
 
@@ -55,7 +54,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center; 
-    z-index: 1;
 }
 
 /* right side */
@@ -64,7 +62,6 @@ body {
     background: rgba(0, 0, 0, 0.375);
     border-radius: 0px 20px 20px 0px;
     box-shadow: 0 0 10px skyblue;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: center; 
@@ -154,8 +151,7 @@ body {
 #seek-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 15px; height: 15px;
     border-radius: 50%;
     background: white;
     cursor: pointer;
@@ -164,8 +160,7 @@ body {
 }
 
 #seek-bar::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
+    width: 15px; height: 15px;
     border-radius: 50%;
     background: white;
     cursor: pointer;
@@ -206,7 +201,7 @@ body {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    z-index: -1;
+    z-index: -5;
     pointer-events: none;
     background: rgba(0, 150, 255, 0.5);
     opacity: 0;
@@ -233,8 +228,7 @@ body {
     display: flex;
     flex-direction: column; 
     border-radius: 30px 0px 0px 30px;
-    width: 400px; 
-    height: 65vh;
+    width: 200px; height: 65vh;
     margin: 50px;
     outline: 3px solid skyblue;
     box-shadow: 0 0 15px skyblue;
@@ -267,12 +261,10 @@ body {
     flex-wrap: wrap; 
     gap: 20px; 
     text-shadow: 2px 2px 5px black;
-    z-index: 10;
 }
 
 .album-content .album {
-    width: 150px;
-    height: 190px;
+    width: 150px; height: 190px;
     text-align: center;
     border: 2px solid rgba(255, 255, 255, 0.716);
     overflow: hidden;
@@ -280,12 +272,11 @@ body {
 }
 
 .album-content .album img {
-    width: 100%;
-    height: auto;
+    width: 100%; height: auto;
 }
 
 .album:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 @media screen and (max-width: 1200px) {
@@ -315,13 +306,24 @@ body {
     .album-art {
         width: 120px; height: 120px;
     }
+
+    .album-container {
+        margin: 20px; 
+    }
 }
 
 @media screen and (max-width: 768px) {
+    body {
+        color: #fff;
+        flex-direction: column;
+        align-items: center;
+    }
+
     .container {
         height: auto;
-        justify-content: center;
         line-height: calc(1em + 1vh);
+        justify-content: flex-start; 
+        max-height: 90vh; 
     }
 
     .playlist-container {
@@ -333,6 +335,15 @@ body {
     .playlist {
         width: 100%;
         border-radius: 0px;
+    }
+    
+    .album-container {
+        margin: 10px; 
+        width: 80%;
+    }
+
+    .album-content .album {
+        width: 120px;
     }
 
     .album-art {
