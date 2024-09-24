@@ -12,6 +12,7 @@ body {
 
 #bg-img {
     position: absolute;
+    z-index: -1000;
     top: 0; left: 0;
     width: 100%; height: 100%;
     object-fit: cover;
@@ -226,6 +227,65 @@ body {
 @keyframes bg-pulse{
     0% { filter: brightness(0.3) blur(15px); }
     100% { filter: brightness(0.2) blur(15px); }
+}
+
+.album-container {
+    display: flex;
+    flex-direction: column; 
+    border-radius: 30px 0px 0px 30px;
+    width: 400px; 
+    height: 65vh;
+    margin: 50px;
+    outline: 3px solid skyblue;
+    box-shadow: 0 0 15px skyblue;
+    background: rgba(0, 111, 123, 0.1); 
+}
+
+.album-header {
+    height: 40px;
+    border-radius: 30px 0px 0px 0px;
+    border-bottom: 2px solid skyblue;
+    background: rgba(0, 51, 57, 0.641);
+    text-align: left;
+    padding: 10px;
+    font-size: 20px; 
+    color: white;
+}
+
+.album-header h2 {
+    margin: 0;
+    text-align: center;
+}
+
+.album-content {
+    background: rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    padding: 20px;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    text-shadow: 2px 2px 5px black;
+    z-index: 10;
+}
+
+.album-content .album {
+    width: 150px;
+    height: 190px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.716);
+    overflow: hidden;
+    transition: transform 0.3s ease; 
+}
+
+.album-content .album img {
+    width: 100%;
+    height: auto;
+}
+
+.album:hover {
+    transform: scale(1.05);
 }
 
 @media screen and (max-width: 1200px) {
