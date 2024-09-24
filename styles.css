@@ -12,10 +12,8 @@ body {
 
 #bg-img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     object-fit: cover;
     filter: brightness(0.2) blur(15px); 
     animation: 
@@ -25,9 +23,9 @@ body {
 }
 
 @keyframes moveBg {
-    0% { transform: rotate(-1deg) scale(1)}
-    50% { transform: rotate(1deg) scale(1.05)}
-    100% { transform: rotate(-1deg) scale(1)}
+    0% { transform: rotate(-1deg) scale(1) }
+    50% { transform: rotate(1deg) scale(1.05) }
+    100% { transform: rotate(-1deg) scale(1) }
 }
 
 @keyframes fade-in {
@@ -72,8 +70,7 @@ body {
 }
 
 .playlist h2 {
-    margin-bottom: 10px;
-    margin-left: 10px;
+    margin-bottom: 10px; margin-left: 10px;
     color: skyblue;
 }
 
@@ -110,8 +107,7 @@ body {
 }
 
 .album-art {
-    width: 150px;
-    height: 150px;
+    width: 150px; height: 150px;
     overflow: hidden;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -120,8 +116,7 @@ body {
 }
 
 .album-art img {
-    width: 100%;
-    height: auto;
+    width: 100%; height: auto;
 }
 
 .track-info {
@@ -136,10 +131,6 @@ body {
     justify-content: space-between;
     margin-bottom: 10px;
     width: 100%;
-}
-
-#track-title {
-    margin-bottom: 5px;
 }
 
 #current-time, #duration {
@@ -198,30 +189,22 @@ body {
     transition: color 0.3s;
 }
 
-.control-btn:hover {
-    color: skyblue;
-}
-
-.control-btn.active {
+.control-btn:hover, .control-btn.active {
     color: skyblue;
 }
 
 .pulse-container {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: -5;
     pointer-events: none;
 }
 
 #pulse {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: -1;
     pointer-events: none;
     background: rgba(0, 150, 255, 0.5);
@@ -248,8 +231,7 @@ body {
 @media screen and (max-width: 1200px) {
     .container {
         flex-direction: column;
-        height: auto;
-        width: 400px;
+        width: 400px; height: auto; 
         justify-content: center;
         line-height: calc(1em + 1vh);
         outline: 3px solid skyblue;
@@ -271,8 +253,7 @@ body {
     }
 
     .album-art {
-        width: 120px;
-        height: 120px;
+        width: 120px; height: 120px;
     }
 }
 
@@ -295,8 +276,7 @@ body {
     }
 
     .album-art {
-        width: 100px;
-        height: 100px;
+        width: 100px; height: 100px;
     }
 
     .track-info {
