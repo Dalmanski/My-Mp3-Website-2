@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const playlistContainer = document.getElementById('playlist');
     const container = document.querySelector('.container');
     const albumContainer = document.querySelector('.album-content');
+    const albumContainerBeat = document.querySelector('.album-container');
 
     let currentTrackIndex = 0;
     let isPlaying = false;
@@ -22,30 +23,31 @@ document.addEventListener('DOMContentLoaded', () => {
     let isShuffle = false;
     let isLoop = false;
 
-    const tracks = [
+    const tracks = [     
         { 
-            album: 'Other music', albumPfP: 'pictures\\cd.jpg',
+            album: 'Other music', albumPfP: 'pictures\\album pic\\other music pfp.jpg',
             tracks: [
                 { src: 'Other music\\Essencen - SAGES.mp3', title: 'Essencen - SAGES', image: 'Other music\\Sages.png', bpm: 130 },
                 { src: 'Other music\\Vindu - Shadow Warrior (lofi beats  chillhop  japan).mp3', title: 'Vindu - Shadow Warrior', image: 'Other music\\Vindu.png', bpm: 45 },
                 { src: 'Other music\\Kiyaaaa - あちこち (feat.ROSE) MV.mp3', title: 'Kiyaaaa - あちこち (feat.ROSE)', image: 'Other music\\Kiya~.png', bpm: 128 },
-                { src: 'Other music\\刀醬 - 5_20AM.mp3', title: '刀醬 - 5:20AM', image: 'Other music\\5_20.png', bpm: 125 }
+                { src: 'Other music\\刀醬 - 5_20AM.mp3', title: '刀醬 - 5:20AM', image: 'Other music\\5_20.png', bpm: 125 },
             ]
         },
         { 
-            album: 'My music', albumPfP: 'pictures\\cd.jpg',
+            album: 'Nightcore', albumPfP: 'pictures\\album pic\\nightcore pfp.jpg',
+            tracks: [
+                { src: 'Other music\\Nightcore Espresso - Sabrina Carpenter  (Lyrics).mp3', title: 'Nightcore - Espresso', image: 'Other music\\Espresso.png', bpm: 116 },
+                { src: 'Other music\\Nightcore - Mockingbird (Lyrics).mp3', title: 'Nightcore - Mockingbird', image: 'Other music\\Mocking bird.png', bpm: 103 },
+            ]
+        },
+        { 
+            album: 'My music', albumPfP: 'pictures\\album pic\\dalmanski pfp.jpg',
             tracks: [
                 { src: 'My Music\\Dalmanski - Kawaii X.mp3', title: 'Dalmanski - Kawaii X', image: 'My music pic\\Kawaii X pic.jpg', bpm: 93 },
                 { src: 'My Music\\Dalmanski - When.mp3', title: 'Dalmanski - When', image: 'My music pic\\When pic.jpg', bpm: 77 },
-                { src: 'My Music\\Dalmanski - Destiny.mp3', title: 'Dalmanski - Destiny', image: 'My music pic\\Destiny pic.jpg', bpm: 124 }
+                { src: 'My Music\\Dalmanski - Destiny.mp3', title: 'Dalmanski - Destiny', image: 'My music pic\\Destiny pic.jpg', bpm: 124 },
             ]
         },
-        { 
-            album: 'Nightcore', albumPfP: 'pictures\\cd.jpg',
-            tracks: [
-                { src: 'Other music\\Nightcore - Mockingbird (Lyrics).mp3', title: 'Nightcore - Mockingbird', image: 'Other music\\Mocking bird.png', bpm: 103 },
-            ]
-        }
     ];
 
     let currentAlbum = tracks[0];
@@ -95,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             albumContainer.appendChild(albumDiv);
             albumDiv.addEventListener('click', () => {
                 currentAlbum = albumData;
+                document.querySelector('.playlist h2').textContent = albumData.album + " Playlist:";
                 updatePlaylist();
             });
         });
@@ -159,12 +162,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const pulseIntervalTime = calculatePulseInterval(bpm);
         pulse.style.animation = `pulse-animation ${pulseIntervalTime}ms infinite`;
         container.style.animation = `container-pulse ${pulseIntervalTime}ms infinite`;
+        albumContainerBeat.style.animation = `album-container-beat ${pulseIntervalTime}ms infinite`;
         bgImg.style.animation = 'none'; bgImg.offsetHeight; bgImg.style.animation = `moveBg 3s infinite ease-in-out, fade-in 1s linear, bg-pulse ${pulseIntervalTime}ms infinite`;
     }
 
     function stopPulseEffect() {
         pulse.style.animation = 'none'; 
         container.style.animation = 'none';
+        albumContainerBeat.style.animation = 'none';
         bgImg.style.animation = 'none';
     }
 
@@ -252,4 +257,79 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure the seek bar resets on load
     seekBar.value = 0;
     seekBar.style.background = 'linear-gradient(to right, white 0%, black 0%)';
+});
+
+
+const loginModal = document.getElementById("loginModal");
+const signupModal = document.getElementById("signupModal");
+const loginBtn = document.getElementById("loginBtn");
+const closeLogin = document.getElementById("closeLogin");
+const closeSignup = document.getElementById("closeSignup");
+const signupLink = document.getElementById("signupLink");
+
+loginBtn.onclick = function() {
+    loginModal.style.display = "block";
+};
+
+closeLogin.onclick = function() {
+    loginModal.style.display = "none";
+};
+
+signupLink.onclick = function() {
+    signupModal.style.display = "block";
+    loginModal.style.display = "none"; 
+};
+
+closeSignup.onclick = function() {
+    signupModal.style.display = "none";
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const keyName = "Dalman's account list";
+    const loginBtn = document.getElementById('loginBtn');
+
+    // Handle sign-up form submission
+    document.querySelector('#signupModal form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const username = document.getElementById('signupUsername').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+        const accounts = JSON.parse(localStorage.getItem(keyName)) || [];
+        if (accounts.some(account => account.email === email)) {
+            alert('An account with this email already exists!');
+            return;
+        }
+        accounts.push({ username, email, password });
+        localStorage.setItem(keyName, JSON.stringify(accounts));
+        alert('Sign-up successful! You can now log in.');
+        document.getElementById('signupModal').style.display = 'none';
+    });
+
+    // Handle log-in form submission
+    document.querySelector('#loginModal form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const accounts = JSON.parse(localStorage.getItem(keyName)) || [];
+        const account = accounts.find(account => account.email === email && account.password === password);
+        if (account) {
+            alert(`Log-in successful! Welcome back, ${account.username}.`);
+            document.getElementById('loginModal').style.display = 'none';
+            loginBtn.textContent = `Hello ${account.username}! Log-out`;
+            const handleLogout = () => {
+                if (confirm('Are you sure you want to log-out?')) {
+                    loginBtn.textContent = 'Log-in';
+                    loginBtn.removeEventListener('click', handleLogout);
+                }
+            };
+            loginBtn.addEventListener('click', handleLogout);
+        } else {
+            alert('Invalid email or password. Please try again.');
+        }
+    });
 });

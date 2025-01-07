@@ -10,6 +10,78 @@ body {
     animation: fade-in 1.5s ease-in-out;
 }
 
+/* Header Design */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgba(0, 111, 123, 0.1);
+    position: fixed;  
+    top: 0;
+    left: 0;
+    right: 0; /* Full width */
+    z-index: 100;
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+}
+
+/* Footer Design */
+footer {
+    text-align: center;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(0, 111, 123, 0.1);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+}
+
+/* Home section */
+.nav-left-side {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.logo-svg {
+    display: flex; 
+    align-items: center; 
+}
+
+.nav-title {
+    margin-left: 10px;
+    font-size: 1.5rem;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px; 
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.nav-links a {
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 10px;
+    transition: all 0.5s;
+}
+
+.nav-links a:hover {
+    color: black;
+    background-color: white;
+}
+
 #bg-img {
     position: absolute;
     z-index: -1000;
@@ -219,12 +291,12 @@ body {
     100% { transform: scale(1); box-shadow: 0 0 10px skyblue; }
 }
 
-@keyframes bg-pulse{
+@keyframes bg-pulse {
     0% { filter: brightness(0.3) blur(15px); }
     100% { filter: brightness(0.2) blur(15px); }
 }
 
-.album-container {
+.album-container { 
     display: flex;
     flex-direction: column; 
     border-radius: 30px 0px 0px 30px;
@@ -233,6 +305,13 @@ body {
     outline: 3px solid skyblue;
     box-shadow: 0 0 15px skyblue;
     background: rgba(0, 111, 123, 0.1); 
+    --posX: 0px;
+}
+
+@keyframes album-container-beat {
+    0% { transform: translateX(var(--posX)); box-shadow: 0 0 10px skyblue; }
+    10% { transform: translateX(calc(var(--posX) - 3px)); box-shadow: 0 0 50px skyblue; }
+    100% { transform: translateX(var(--posX)); box-shadow: 0 0 10px skyblue; }
 }
 
 .album-header {
@@ -278,6 +357,113 @@ body {
 .album:hover {
     transform: scale(1.1);
 }
+
+
+/* When click image on Article */
+.modal {
+    text-align: center;
+    padding: 10px;
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.8); 
+}
+
+.modal-content-in-img {
+    padding: 10px;
+    margin: auto;
+    display: block;
+    max-width: 90%; 
+    max-height: 90%; 
+}
+
+.modal-content-in-form {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.modal-content-in-form h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-content-in-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content-in-form label {
+    margin-bottom: 5px;
+    color: white;
+    text-align: left;
+}
+
+.modal-content-in-form input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    outline: none;
+}
+
+.modal-content-in-form button {
+    padding: 10px;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.modal-content-in-form button:hover {
+    background-color: #0df2f2;
+}
+
+
+/* Signup link style */
+a#signupLink {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a#signupLink:hover {
+    text-decoration: underline;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px 0;
+    color: white;
+}
+
+/* Close button (X) Styles */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 
 @media screen and (max-width: 1200px) {
     .container {
