@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
     const albumContainer = document.querySelector('.album-content');
     const albumContainerBeat = document.querySelector('.album-container');
+    const playlistContainerBeat = document.querySelector('.playlist');
 
     let currentTrackIndex = 0;
     let isPlaying = false;
@@ -163,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pulse.style.animation = `pulse-animation ${pulseIntervalTime}ms infinite`;
         container.style.animation = `container-pulse ${pulseIntervalTime}ms infinite`;
         albumContainerBeat.style.animation = `album-container-beat ${pulseIntervalTime}ms infinite`;
+        playlistContainerBeat.style.animation = `playlist-container-beat ${pulseIntervalTime}ms infinite`;
         bgImg.style.animation = 'none'; bgImg.offsetHeight; bgImg.style.animation = `moveBg 3s infinite ease-in-out, fade-in 1s linear, bg-pulse ${pulseIntervalTime}ms infinite`;
     }
 
@@ -170,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pulse.style.animation = 'none'; 
         container.style.animation = 'none';
         albumContainerBeat.style.animation = 'none';
+        playlistContainerBeat.style.animation = 'none';
         bgImg.style.animation = 'none';
     }
 
