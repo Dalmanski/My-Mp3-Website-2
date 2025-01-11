@@ -260,8 +260,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure the seek bar resets on load
     seekBar.value = 0;
     seekBar.style.background = 'linear-gradient(to right, white 0%, black 0%)';
-});
 
+    const volumeSlider = document.getElementById('volume-slider');
+    audio.volume = volumeSlider.value;
+
+    // Adjust audio volume when the slider value changes
+    volumeSlider.addEventListener('input', () => {
+        audio.volume = volumeSlider.value;
+    });
+
+    volumeSlider.value = 1;
+});
 
 const loginModal = document.getElementById("loginModal");
 const signupModal = document.getElementById("signupModal");

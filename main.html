@@ -46,6 +46,10 @@
 
     <div class="container">
         <div class="playlist-container">
+            <div class="volume-container">
+                <i class="fas fa-volume-up"></i>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+            </div>
             <h1>Now Playing</h1>
             <div class="player">
                 <div class="album-art">
@@ -78,6 +82,9 @@
         <h2>Playlist:</h2>
         <ul id="playlist"></ul>
     </div>
+
+   
+    
 
     <div id="loginModal" class="modal">
         <div class="modal-content-in-form">

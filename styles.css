@@ -63,7 +63,7 @@ footer {
 .nav-title {
     margin-left: 10px;
     font-size: 1.5rem;
-    color: white;
+    color: cyan;
     margin-top: 5px;
     margin-bottom: 5px; 
 }
@@ -76,7 +76,7 @@ footer {
 }
 
 .nav-links a {
-    color: white;
+    color: cyan;
     border-radius: 10px;
     text-decoration: none;
     padding: 10px;
@@ -492,6 +492,60 @@ label {
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.volume-container {
+    display: flex;
+    gap: 10px;
+}
+
+#volume-slider {
+    width: 100px;
+    margin-top: 5px;
+    cursor: pointer;
+    appearance: none; 
+    background-color: black; 
+    box-shadow: 0 0 10px black, 0 0 4px white;
+    height: 5px; 
+    border-radius: 10px; 
+}
+
+/* Style the slider thumb */
+#volume-slider::-webkit-slider-thumb {
+    appearance: none; 
+    background-color: white; 
+    width: 15px;
+    height: 15px; 
+    border: none; 
+    border-radius: 50%; 
+}
+
+#volume-slider::-moz-range-thumb {
+    background-color: white;
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-radius: 50%;
+}
+
+#volume-slider::-ms-thumb {
+    background-color: white; 
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-radius: 50%;
+}
+
+#volume-slider:hover::-webkit-slider-thumb {
+    background-color: lightgray;
+}
+
+#volume-slider:hover::-moz-range-thumb {
+    background-color: lightgray;
+}
+
+#volume-slider:hover::-ms-thumb {
+    background-color: lightgray;
 }
 
 /*
