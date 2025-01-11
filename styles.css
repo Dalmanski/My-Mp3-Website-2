@@ -17,6 +17,9 @@ header {
     align-items: center;
     padding: 10px;
     background: rgba(0, 111, 123, 0.1);
+    border-bottom: 2px solid transparent;
+    border-image: radial-gradient(circle, cyan 0%, rgba(255, 255, 255, 0) 100%);
+    border-image-slice: 1;
     position: fixed;  
     top: 0;
     left: 0;
@@ -37,6 +40,9 @@ footer {
     right: 0;
     left: 0;
     z-index: 1000;
+    border-top: 2px solid transparent;
+    border-image: radial-gradient(circle, cyan 0%, rgba(255, 255, 255, 0) 100%);
+    border-image-slice: 1;
     background: rgba(0, 111, 123, 0.1);
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); 
